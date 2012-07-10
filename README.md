@@ -1,6 +1,6 @@
 # Shinsei
 
-Ruby bindings for libnova, a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
+Ruby bindings for [libnova](http://libnova.sourceforge.net/), a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
 
 ## Installation
 
