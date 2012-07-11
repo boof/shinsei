@@ -1,10 +1,6 @@
 require "shinsei/version"
 require "shinsei/ffi/libnova"
-
 require "shinsei/site"
-require "shinsei/moon"
-require "shinsei/sun"
-require "shinsei/datetime"
 
 module Shinsei
 
