@@ -16,6 +16,6 @@ Gem::Specification.new do |gem|
   gem.version       = Shinsei::VERSION
 
   # TODO Submit homebrew formula
-  gem.requirements << 'libnova v0.14 (http://libnova.sourceforge.net/)'
+  gem.requirements << 'libnova v0.15 (http://libnova.sourceforge.net/)'
   gem.add_dependency 'ffi', '~> 1.0'
 end

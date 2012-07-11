@@ -18,6 +18,10 @@ Or install it yourself as:
 
     $ gem install shinsei
 
+## Dependencies
+
+- libnova (v0.15, libtool 2.4.2)
+
 ## Usage
 
     latitude, longitude = '53.59209', '9.95328'
@@ -48,5 +52,5 @@ Or install it yourself as:
 ## Thanks
 
 * libnova contributors
-* all the people behind FFI
+* all the people working on Ruby and FFI
 * [fork](http://fork.de)
