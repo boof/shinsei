@@ -1,6 +1,8 @@
 # Shinsei
 
-Ruby bindings for [libnova](http://libnova.sourceforge.net/), a general purpose, double precision, Celestial Mechanics, Astrometry and Astrodynamics library.
+Ruby bindings for [libnova](http://libnova.sourceforge.net/),
+a general purpose, double precision,
+Celestial Mechanics, Astrometry and Astrodynamics library.
 
 ## Installation
 
@@ -21,8 +23,19 @@ Or install it yourself as:
     latitude, longitude = '53.59209', '9.95328'
     site = Shinsei latitude, longitude
 
-    moon = site.moon
-    moon.rise Date.today # => #<DateTime: ...>
+    site.moon_set Date.new(2012, 7, 11) # => '2012-07-12 13:39:55 UTC'
+    site.moon_rise Date.new(2012, 7, 11) # => '2012-07-11 22:25:57 UTC'
+
+## Performance
+
+...
+
+## TODO
+
+* write specs
+* define more structs
+* attach more functions
+* documentation
 
 ## Contributing
 

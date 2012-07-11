@@ -21,7 +21,7 @@ module Shinsei
              :set,     :double,
              :transit, :double
     end
-    class Zonedate < FFI::Struct
+    class Date < FFI::Struct
       layout :years,   :int,
              :months,  :int,
              :days,    :int,
@@ -39,8 +39,10 @@ module Shinsei
     # attach_function :ln_get_lunar_ecl_coords, [:double, :pointer], :void
     # attach_function :ln_get_lunar_equ_coords, [:double, :pointer], :void
     # attach_function :ln_get_local_date, [:double, :pointer], :void
-    # attach_function :ln_get_julian_from_sys, [], :double
     # attach_function :ln_get_julian_day, [:pointer], :double
+
+    # for more precision but less performance
+    attach_function :ln_get_julian_from_sys, [], :double
 
   end
 end

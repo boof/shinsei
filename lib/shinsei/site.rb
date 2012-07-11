@@ -1,33 +1,50 @@
 require 'bigdecimal'
+require 'date'
 
 module Shinsei
-  class Site < LibNova::LnlatPosn
+  class Site
+
+    attr_reader :latitude, :longitude
 
     # N, E => +
     # S, W => -
-    def self.new(latitude, longitude, digits = 4)
-      instance = super()
+    def initialize(latitude, longitude, digits = 4)
+      @latitude  = BigDecimal latitude,  digits
+      @longitude = BigDecimal longitude, digits
 
-      instance[:lat] = BigDecimal latitude,  digits
-      instance[:lng] = BigDecimal longitude, digits
+      ll = LibNova::LnlatPosn.new
+      ll[:lat] = @latitude
+      ll[:lng] = @longitude
 
-      instance
+      @ptr_ll = ll.pointer
     end
 
-    def moon
-      @moon ||= Moon.new self
+    def moon_rise(date = Date.today)
+      utc moon_rst(date)[:rise]
     end
-    def sun
-      @sun ||= Sun.new self
+    def moon_set(date = Date.today)
+      utc moon_rst(date)[:set]
+    end
+    def moon_transit(date = Date.today)
+      utc moon_rst(date)[:transit]
     end
 
     def inspect
-      '#<%s:0x%s latitude=%f longitude=%f>' % [
-        self.class.name,
-        pointer.address.to_s(16).rjust(14, '0'),
-        self[:lat], self[:lng]
-      ]
+      '#<%s lat=%f lng=%f>' % [ self.class.name, latitude, longitude ]
     end
+
+    protected
+
+      def moon_rst(date)
+        object = LibNova::RstTime.new
+        LibNova.ln_get_lunar_rst date.jd, @ptr_ll, object
+        object
+      end
+      def utc(jd)
+        object = LibNova::Date.new
+        LibNova.ln_get_date jd, object
+        Time.utc(*object.values)
+      end
 
   end
 end
